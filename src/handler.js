@@ -129,7 +129,7 @@ export default new class {
             throw new Error("Index must be between 0 and length of toDos in project - 1")
         }
         if (!(newDueDate instanceof Date)) {
-            throw new Error("Must be instance of date");
+            newDueDate = new Date(newDueDate);
         }
         newDueDate = newDueDate.toISOString().split('T')[0];
         this._projects[projInd].itemList[toDoInd].dueDate = newDueDate;
