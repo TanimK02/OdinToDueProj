@@ -1,27 +1,25 @@
 class Project {
 
-    #itemList
-    #id
     constructor(name) {
         if (name === undefined || typeof (name) != 'string' || name.length < 1) {
             throw new Error("Needs name and name needs to be a string of at least 1 character.")
         }
         this._name = name;
-        this.#itemList = [];
+        this._itemList = [];
         this._complete = false;
-        this.#id = crypto.randomUUID();
-
+        this._id = crypto.randomUUID();
+        this.dueDate;
     }
 
     addItem(newItem) {
-        this.#itemList.push(newItem)
+        this._itemList.push(newItem)
     }
     removeItem(index) {
-        this.#itemList.splice(index, 1)
+        this._itemList.splice(index, 1)
     }
 
     get itemList() {
-        return [...this.#itemList]
+        return [...this._itemList]
     }
 
     get complete() {
@@ -47,7 +45,7 @@ class Project {
     }
 
     get id() {
-        return this.#id;
+        return this._id;
     }
 }
 

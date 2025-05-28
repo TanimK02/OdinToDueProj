@@ -1,6 +1,6 @@
 class Item {
     #id
-    constructor(title, dueDate, description = null, priority = 3) {
+    constructor(title, dueDate, description = null, priority) {
         if (title === undefined || dueDate === undefined) {
             throw new Error('Need at least a title and due date.')
         }
@@ -8,10 +8,7 @@ class Item {
         this._description = description;
         this._dueDate = dueDate;
         this._priority = priority;
-        this._notes;
-        this._checklist;
         this._completed = false;
-        this.#id = crypto.randomUUID();
     }
 
     get title() {
@@ -19,7 +16,7 @@ class Item {
     }
 
     set title(replacement) {
-        if (replacement.length > 1) {
+        if (replacement.length < 1) {
             throw new Error("Need at least 1 character")
         }
         this._title = replacement;
@@ -41,32 +38,37 @@ class Item {
     }
 
     set priority(num) {
-        if (num < 1 && num > 3) {
-            throw new Error("Needs to be 1,2, or 3")
+        if (num < 0) {
+            throw new Error("Needs to be at least 0")
         }
         this._priority = num;
     }
 
-    set completed(val) {
-        if (val != true && val != false) {
-            throw new Error("Need a value of true or false")
-        }
-        this._completed = val;
+    setCompleted = () => {
+        this._completed = !this._completed;
     }
 
     get completed() {
         return this._completed;
     }
 
-    get id() {
-        return this.#id;
+    get dueDate() {
+        return this._dueDate;
+    }
+
+    set dueDate(value) {
+        {
+            this._dueDate = value;
+        }
     }
 }
 
-const makeNewTodo = (title, dueDate, description = null, priority = 3) => {
-    if (title === undefined || dueDate === undefined) {
+const makeNewTodo = (title, description = null, priority = 0) => {
+    if (title === undefined) {
         return
     }
+    const today = new Date();
+    const dueDate = today.toISOString().split('T')[0];
     const todo = new Item(title, dueDate, description, priority)
     return todo
 }

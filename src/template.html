@@ -12,20 +12,29 @@
         <div class="h1Container">
             <h1>ToDo Journal</h1>
         </div>
-        <div class="creationButtons">
-            <button class="newProjBtn">New Project</button>
-            <button class="newToDoBtn">New ToDo</button>
-        </div>
     </div>
     <div class="notebookContainer">
         <div class="projectContainer">
-            <h3>Projects</h3>
-            <div class="projectList">
+            <div class="projectListHeader">
 
+                <h3>Projects</h3>
+                <button id="projectAddButton"><img src="./assets/plus-svgrepo-com.svg" style="width: 20px;"></button>
             </div>
+            <ul class="projectList" id="projectList">
+
+            </ul>
         </div>
         <div class="notebook">
-            <div class="toDoList"></div>
+            <div class="toDoListHeader">
+                <div class="projectInfo" id="projectInfo">
+                    <h2 id="toDosProjName" style="text-align: start; margin-left: 1rem;">Default</h2>
+                </div>
+                <button class="toDoAddButton" id="toDoAddButton"><img src="./assets/plus-svgrepo-com.svg"
+                        style="width: 25px;"></button>
+            </div>
+            <ul class="toDoList" id="toDoList">
+
+            </ul>
         </div>
     </div>
 </body>
