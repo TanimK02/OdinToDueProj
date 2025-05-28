@@ -354,7 +354,6 @@ class DomHandler {
         newDate.type = 'date';
         newDate.style.maxHeight = "1rem";
 
-
         firstSepDiv.appendChild(newTitle);
         secondSepDiv.appendChild(newNotes);
         thirdSepDiv.appendChild(newDate);
@@ -366,7 +365,9 @@ class DomHandler {
                 this.handler.changeToDoDesc(newNotes.value, actualIndex, projInd);
                 this.handler.changeToDoTitle(newTitle.value, actualIndex, projInd);
                 this.handler.changeToDoPriority(Number(priorityInput.value), actualIndex, projInd);
-                this.handler.changeToDoDueDate(new Date(newDate.value), actualIndex, projInd);
+                if (newDate.value) {
+                    this.handler.changeToDoDueDate(new Date(newDate.value), actualIndex, projInd);
+                }
                 this.loadTodos(document, projInd);
             }
         });
